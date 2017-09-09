@@ -22,7 +22,7 @@ exports.getStations = function(id, name) {
     return new Promise((resolve, reject) => {
         soap.createClient(url, function(err, client) {
             if(err) {
-                var error =new Error(500);
+                var error =new Error("The RATP service is not avaible, please retry later.");
                 reject(error);
             } else {
                 var params = {
@@ -31,7 +31,6 @@ exports.getStations = function(id, name) {
                 };
                 client.getLines(params, function(err, result) {
                     console.log(result);
-                    // Yield a value and complete
                     resolve(result);
                 });
             }

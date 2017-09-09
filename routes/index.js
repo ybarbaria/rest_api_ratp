@@ -27,8 +27,9 @@ module.exports = function(server) {
 				res.send(station);
 				return next();
 			},
-			() => {
-				res.send(new errors.InternalServerError());
+			(error) => {
+				console.log(error);
+				res.send(new errors.InternalServerError(error.message));
 				return next();
 			}
 		);

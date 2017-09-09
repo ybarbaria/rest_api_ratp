@@ -10,18 +10,8 @@
 //   module.exports = ErrorSoap;
 
 class Error {
-    constructor(code) {
-        this.code = code;
-    }
-}
-
-class advertHandler {
-    constructor(projects) {
-        this.projects = projects;
-    }
-
-    getProject(name) {
-        return this.projects[name];
+    constructor(message) {
+        this.message = message;
     }
 }
 
