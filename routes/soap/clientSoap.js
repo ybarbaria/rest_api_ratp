@@ -1,5 +1,15 @@
+'use strict';
+
+/** Libs */
 var soap = require('soap');
-var url = 'http://opendata-tr.ratp.fr/wsiv/services/Wsiv.';
+
+/** Models */
+var Error = require('../../models/error.js');
+
+
+//var url = 'http://opendata-tr.ratp.fr/wsiv/services/Wsiv.';
+var url = 'http://test.com';
+
 var urlFile = './Wsiv.wsdl'
 var args = {name: 'value'};
 
@@ -8,14 +18,23 @@ var args = {name: 'value'};
  * @param {*} id Identifier of the line
  * @param {*} name Name of the station
  */
-var getStations = function(id, name) {
-    soap.createClient(url, function(err, client) {
-        var params = {
-            id : id,
-            name : name
-        };
-        client.getLines(params, function(err, result) {
-            console.log(result);
+exports.getStations = function(id, name) {
+    return new Promise((resolve, reject) => {
+        soap.createClient(url, function(err, client) {
+            if(err) {
+                var error =new Error(500);
+                reject(error);
+            } else {
+                var params = {
+                    id : id,
+                    name : name
+                };
+                client.getLines(params, function(err, result) {
+                    console.log(result);
+                    // Yield a value and complete
+                    resolve(result);
+                });
+            }
         });
     });
 }
@@ -25,7 +44,7 @@ var getStations = function(id, name) {
  * to get the list of lines.
  * @param {*} id 
  */
-var getLines = function(id) {
+exports.getLines = function(id) {
     soap.createClient(url, function(err, client) {
         var params = {
             id : id
@@ -42,7 +61,7 @@ var getLines = function(id) {
  * @param {*} idLine Identifier of the line
  * @param {*} direction A for single way, R for return way, * for both
  */
-var getNextPassage = function(idStation, idLine, direction) {
+exports.getNextPassage = function(idStation, idLine, direction) {
     soap.createClient(url, function(err, client) {
         
         var params = {

@@ -25,5 +25,6 @@ server.use(restifyPlugins.fullResponse());
   * Start Server, Connect to DB & Require Routes
   */
 server.listen(config.port, () => {
-		
+  require('./routes')(server);
+  console.log(`Server is listening on port ${config.port}`);
 });

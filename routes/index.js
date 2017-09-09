@@ -1,3 +1,5 @@
+'use strict'
+
 /**
  * Module Dependencies
  */
@@ -6,109 +8,29 @@ const errors = require('restify-errors');
 /**
  * Soap Client
  */
-const Soap = require('../routes/soap/saop');
-
+const soap = require('./soap/clientSoap.js');
 
 
 module.exports = function(server) {
-
-	// /**
-	//  * POST
-	//  */
-	// server.post('/todos', (req, res, next) => {
-	// 	if (!req.is('application/json')) {
-	// 		return next(
-	// 			new errors.InvalidContentError("Expects 'application/json'"),
-	// 		);
-	// 	}
-
-	// 	let data = req.body || {};
-
-	// 	let todo = new Todo(data);
-	// 	todo.save(function(err) {
-	// 		if (err) {
-	// 			console.error(err);
-	// 			return next(new errors.InternalError(err.message));
-	// 			next();
-	// 		}
-
-	// 		res.send(201);
-	// 		next();
-	// 	});
-	// });
-
-	// /**
-	//  * LIST
-	//  */
-	// server.get('/todos', (req, res, next) => {
-		
-	// });
-
 	/**
 	 * GET
 	 */
-	server.get('/stations/:stationId', (req, res, next) => {
-		
-	});
-
-	/**
-	 * UPDATE
-	 */
-	server.put('/todos/:todo_id', (req, res, next) => {
+	server.get('/stations/:stationId/:name', (req, res, next) => {
 		if (!req.is('application/json')) {
-			return next(
-				new errors.InvalidContentError("Expects 'application/json'"),
+		 	return next(
+				new errors.InvalidContentError("Expects 'application/json'")
 			);
 		}
-
 		let data = req.body || {};
-
-		if (!data._id) {
-			data = Object.assign({}, data, { _id: req.params.todo_id });
-		}
-
-		Todo.findOne({ _id: req.params.todo_id }, function(err, doc) {
-			if (err) {
-				console.error(err);
-				return next(
-					new errors.InvalidContentError(err.errors.name.message),
-				);
-			} else if (!doc) {
-				return next(
-					new errors.ResourceNotFoundError(
-						'The resource you requested could not be found.',
-					),
-				);
+		var station = soap.getStations(req.params.stationId, req.params.name).then(
+			(result) => {
+				res.send(station);
+				return next();
+			},
+			() => {
+				res.send(new errors.InternalServerError());
+				return next();
 			}
-
-			Todo.update({ _id: data._id }, data, function(err) {
-				if (err) {
-					console.error(err);
-					return next(
-						new errors.InvalidContentError(err.errors.name.message),
-					);
-				}
-
-				res.send(200, data);
-				next();
-			});
-		});
+		);
 	});
-
-	/**
-	 * DELETE
-	 */
-	server.del('/todos/:todo_id', (req, res, next) => {
-		Todo.remove({ _id: req.params.todo_id }, function(err) {
-			if (err) {
-				console.error(err);
-				return next(
-					new errors.InvalidContentError(err.errors.name.message),
-				);
-			}
-
-			res.send(204);
-			next();
-		});
-	});
-};    
+};
