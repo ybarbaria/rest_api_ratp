@@ -1,0 +1,16 @@
+{
+  "name": "rest_api_ratp",
+  "version": "1.0.0",
+  "description": "Rest API used to provide access to the ratp open data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "YvanBarbaria",
+  "license": "ISC",
+  "dependencies": {
+    "restify": "^5.2.0",
+    "restify-errors": "^5.0.0",
+    "restify-plugins": "^1.6.0"
+  }
+}
