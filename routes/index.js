@@ -8,10 +8,9 @@ const errors = require('restify-errors');
 /**
  * Soap Client
  */
-const soap = require('./soap/clientSoap.js');
+const soap = require('./soap/client-soap.js');
 
-
-module.exports = function(server) {
+module.exports = (server) => {
 	/**
 	 * GET
 	 */
@@ -21,6 +20,7 @@ module.exports = function(server) {
 				new errors.InvalidContentError("Expects 'application/json'")
 			);
 		}
+
 		let data = req.body || {};
 		var station = soap.getStations(req.params.stationId, req.params.name).then(
 			(result) => {

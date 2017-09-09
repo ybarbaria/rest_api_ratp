@@ -6,12 +6,24 @@ var soap = require('soap');
 /** Models */
 var Error = require('../../models/error.js');
 
-
 //var url = 'http://opendata-tr.ratp.fr/wsiv/services/Wsiv.';
 var url = 'http://test.com';
 
 var urlFile = './Wsiv.wsdl'
 var args = {name: 'value'};
+
+exports.createClient() = function() {
+    return new Promise((resolve, reject) => {
+        soap.createClient(url, function(err, client) {
+            if(err) {
+                var error =new Error("The RATP service is not avaible, please retry later.");
+                reject(error);
+            } else {
+                resolve(client);
+            }
+        });
+    });
+}
 
 /**
  * This service allows to obtain the information on a particular station or on all the stations of a station line.
@@ -20,7 +32,7 @@ var args = {name: 'value'};
  */
 exports.getStations = function(id, name) {
     return new Promise((resolve, reject) => {
-        soap.createClient(url, function(err, client) {
+        soap.createClient(url, (err, client) => {
             if(err) {
                 var error =new Error("The RATP service is not avaible, please retry later.");
                 reject(error);
@@ -29,7 +41,7 @@ exports.getStations = function(id, name) {
                     id : id,
                     name : name
                 };
-                client.getLines(params, function(err, result) {
+                client.getStations(params, (err, result) => {
                     console.log(result);
                     resolve(result);
                 });
@@ -43,13 +55,21 @@ exports.getStations = function(id, name) {
  * to get the list of lines.
  * @param {*} id 
  */
-exports.getLines = function(id) {
-    soap.createClient(url, function(err, client) {
-        var params = {
-            id : id
-        };
-        client.getLines(params, function(err, result) {
-            console.log(result);
+exports.getLines = (id)=> {
+    return new Promise((resolve, reject) => {
+        soap.createClient(url, (err, client) => {
+            if(err) {
+                var error =new Error("The RATP service is not avaible, please retry later.");
+                reject(error);
+            } else {
+                var params = {
+                    id : id
+                };
+                client.getLines(params, (err, result) => {
+                    console.log(result);
+                    resolve(result);
+                });
+            }
         });
     });
 }
@@ -60,8 +80,8 @@ exports.getLines = function(id) {
  * @param {*} idLine Identifier of the line
  * @param {*} direction A for single way, R for return way, * for both
  */
-exports.getNextPassage = function(idStation, idLine, direction) {
-    soap.createClient(url, function(err, client) {
+exports.getNextPassage = (idStation, idLine, direction)=> {
+    soap.createClient(url, (err, client) => {
         
         var params = {
             station : {
