@@ -12,19 +12,6 @@ var url = 'http://test.com';
 var urlFile = './Wsiv.wsdl'
 var args = {name: 'value'};
 
-exports.createClient() = function() {
-    return new Promise((resolve, reject) => {
-        soap.createClient(url, function(err, client) {
-            if(err) {
-                var error =new Error("The RATP service is not avaible, please retry later.");
-                reject(error);
-            } else {
-                resolve(client);
-            }
-        });
-    });
-}
-
 /**
  * This service allows to obtain the information on a particular station or on all the stations of a station line.
  * @param {*} id Identifier of the line
@@ -81,22 +68,27 @@ exports.getLines = (id)=> {
  * @param {*} direction A for single way, R for return way, * for both
  */
 exports.getNextPassage = (idStation, idLine, direction)=> {
-    soap.createClient(url, (err, client) => {
-        
-        var params = {
-            station : {
-                id : idStation
-            },
-            line : {
-                id : idLine
-            },
-            direction: {
-                sens : direction
+    return new Promise((resolve, reject) => {
+        soap.createClient(url, (err, client) => {
+            if(err) {
+                var error =new Error("The RATP service is not avaible, please retry later.");
+                reject(error);
+            } else {
+                var params = {
+                    station : {
+                        id : idStation
+                    },
+                    line : {
+                        id : idLine
+                    },
+                    direction: {
+                        sens : direction
+                    }
+                };
+                client.getMissionsNext(params, function(err, result) {
+                    console.log(result);
+                });
             }
-        };
-        
-        client.getMissionsNext(params, function(err, result) {
-            console.log(result);
         });
     });
 }
