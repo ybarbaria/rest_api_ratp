@@ -7,3 +7,5 @@ You can participate in the construction of this project. Any remarks are good to
 
 I use node.js and restify to create the api and soap-node to consume the soap of the ratp.
 
+You can test it here : 
+https://barbaria.io/ratp/
