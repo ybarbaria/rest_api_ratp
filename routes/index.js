@@ -14,27 +14,27 @@ module.exports = (server) => {
 	/**
 	 * GET Station informations by name station and id of the line
 	 */
-	server.get('/stations/:lineId/:name', handlerStations);
+	server.get('ratp/stations/:lineId/:name', handlerStations);
 
 	/**
 	 * GET All stations from line id
 	 */
-	server.get('/stations/:lineId', handlerStations);
+	server.get('ratp/stations/:lineId', handlerStations);
 
 	/**
 	 * Get Line information by his identifier
 	 */
-	server.get('/lines/:lineId', handlerLines);
+	server.get('ratp/lines/:lineId', handlerLines);
 
 	/**
 	 * Get All lines informations
 	 */
-	server.get('/lines', handlerLines);
+	server.get('ratp/lines', handlerLines);
 
 	/**
 	 * 
 	 */
-	server.get('/nextPassages/:stationId/:lineId/:direction', handlerNextPassages);
+	server.get('ratp/nextPassages/:stationId/:lineId/:direction', handlerNextPassages);
 
 	/**
 	 * Manage the request of the stations information
@@ -56,8 +56,10 @@ module.exports = (server) => {
 				return next();
 			},
 			(error) => {
-				console.log(error);
-				res.send(new errors.InternalServerError(error.message));
+				//TODO à supprimer
+				
+				// console.log(error);
+				// res.send(new errors.InternalServerError(error.message));
 				return next();
 			}
 		);
