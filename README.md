@@ -9,3 +9,5 @@ I use node.js and restify to create the api and soap-node to consume the soap of
 
 You can test it here : 
 https://barbaria.io/ratp/
+
+http://mherman.org/blog/2016/05/26/swagger-and-nodejs/#.WdemrGiCyUk
