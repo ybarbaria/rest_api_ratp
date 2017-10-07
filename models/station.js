@@ -3,9 +3,10 @@ class Station {
         this.id = id;
         this.name = name;
         this.line = Line;
-        this.direction = Direction
+        this.direction = Direction;
     }
 }
 
 module.exports = Station;
-
+  
+    

@@ -5,6 +5,7 @@ const config = require('./config');
 const restify = require('restify');
 const restifyPlugins = require('restify-plugins');
 const swagger = require('swagger-restify');
+const log = require('./log/log.js')
 /**
   * Initialize Server
   */

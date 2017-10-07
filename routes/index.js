@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /**
  * Module Dependencies
@@ -9,6 +9,7 @@ const errors = require('restify-errors');
  * Soap Client
  */
 const soap = require('./soap/client-soap.js');
+const soapStations =  require('./soap/stations/stations-soap.js');
 
 module.exports = (server) => {
 	/**
@@ -49,21 +50,16 @@ module.exports = (server) => {
 			);
 		}
 
-		soap.getStations(req.params.lineId, req.params.name).then(
+		soapStations.getStations(req.params.lineId, req.params.name).then(
 			(result) => {
-				console.log(result);
-				res.send(station);
+				res.send(result);
 				return next();
 			},
 			(error) => {
-				//TODO à supprimer
-				
-				// console.log(error);
-				// res.send(new errors.InternalServerError(error.message));
 				return next();
 			}
 		);
-	};
+	}
 
 	/**
 	 * Manage the request of the lines informations
