@@ -1,3 +1,7 @@
+'use strict';
+
+var clientSoap = require('../client-soap.js');
+
 /**
  * Allows to obtain the information of next passage to a station for a line and for a given direction
  * @param {*} idStation Identifier of the station

@@ -1,3 +1,5 @@
+'use strict';
+
 var clientSoap = require('../client-soap.js');
 
 /**

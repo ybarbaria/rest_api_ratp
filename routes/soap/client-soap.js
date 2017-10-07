@@ -2,11 +2,13 @@
 
 /** Libs */
 var soap = require('soap');
+
 /** Models */
 var Error = require('../../models/error.js');
 
+/** Config */
 var urlFile = './routes/soap/Wsiv.wsdl';
-var args = {name: 'value'};
+
 
 exports.getClientSoap = () =>{
     return new Promise((resolve, reject) => {
