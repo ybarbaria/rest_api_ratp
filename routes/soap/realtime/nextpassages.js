@@ -14,18 +14,19 @@ exports.getNextPassage = (idStation, idLine, direction) => {
         {
             var params = {
                 station : {
-                    id : idStation
-                },
-                line : {
-                    id : idLine
+                    id : idStation,
+                    line : {
+                        id : idLine
+                    }
                 },
                 direction: {
-                    sens : direction
-                }
+                    sens: direction
+                },
+                limit: 1
             };
 
             client.getMissionsNext(params, (err, result) => {
-                resolve(result.return);
+                resolve(result.return.missions);
             });
         });
     });

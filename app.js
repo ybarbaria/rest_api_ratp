@@ -24,12 +24,12 @@ server.use(restifyPlugins.queryParser({ mapParams: true }));
 server.use(restifyPlugins.fullResponse());
 
 swagger.init(server, {
-  swagger: '1.0', 
+  swagger: '2.0', 
   info: {
       version: '1.0',
-      title: 'Swagger 2.0 Restify example'
+      title: 'REST API RATP'
   },
-  basePath: '/',
+  basePath: '/ratp',
   host: 'localhost:' + config.port,
   apis: ['./routes/index.js'],
   produces: [

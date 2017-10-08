@@ -13,10 +13,11 @@
   "author": "YvanBarbaria",
   "license": "ISC",
   "dependencies": {
+    "bower": "^1.8.2",
     "restify": "^5.2.0",
     "restify-errors": "^5.0.0",
     "restify-plugins": "^1.6.0",
     "soap": "^0.21.0",
-    "swagger-restify": "^1.0.1"
+    "swagger-restify": "github:vellotis/swagger-restify"
   }
 }
