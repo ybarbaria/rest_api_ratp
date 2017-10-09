@@ -7150,3 +7150,28 @@ Server is listening on port 9985
        stationArea: [Object] },
     stations: [ [Object], [Object] ],
     stationsDates: [ '201710082314', '201710082347' ] } ]
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Server is listening on port 9985
+Ambiguous Station
+(node:31063) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): AssertionError: first argument to VError, SError, or WError constructor must be a string, object, or Error (string) is required
+Server is listening on port 9985
+Server is listening on port 9985

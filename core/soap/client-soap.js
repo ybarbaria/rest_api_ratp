@@ -7,7 +7,7 @@ var soap = require('soap');
 var Error = require('../../models/error.js');
 
 /** Config */
-var urlFile = './routes/soap/Wsiv.wsdl';
+var urlFile = './core/soap/Wsiv.wsdl';
 
 
 exports.getClientSoap = () =>{

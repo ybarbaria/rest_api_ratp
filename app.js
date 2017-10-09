@@ -31,7 +31,7 @@ swagger.init(server, {
   },
   basePath: '/ratp',
   host: 'localhost:' + config.port,
-  apis: ['./routes/index.js'],
+  apis: ['./core/api.js'],
   produces: [
       'application/json',
       'text/xml'
@@ -42,7 +42,7 @@ swagger.init(server, {
   ],
 
   // swagger-restify proprietary
-  swaggerURL: '/swagger',
+  swaggerURL: '/ratp/doc',
   swaggerJSON: '/api-docs.json',
   swaggerUI: './public'
 });
@@ -51,6 +51,6 @@ swagger.init(server, {
   * Start Server, Connect to DB & Require Routes
   */
 server.listen(config.port, () => {
-  require('./routes')(server);
+  require('./core/api.js')(server);
   console.log(`Server is listening on port ${config.port}`);
 });

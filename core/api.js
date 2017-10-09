@@ -6,7 +6,7 @@
 const errors = require('restify-errors');
 
 /**
- * Soap Client
+ * Soap Dependencies
  */
 const soap = require('./soap/client-soap.js');
 const soapStations =  require('./soap/stations/stations-soap.js');
@@ -18,17 +18,6 @@ const saopRealtime = require('./soap/realtime/nextpassages.js');
  * tags:
  *   - name: exampleJs
  *     description: All about API using JavaScript annotations
- * parameters:
- *   - name: username
- *     in: query
- *     description: Your username
- *     required: true
- *     type: string
- *   - name: password
- *     in: query
- *     description: Your password
- *     required: true
- *     type: string
  */
 module.exports = (server) => {
 
@@ -71,7 +60,7 @@ module.exports = (server) => {
 	*   summary: Get Lines informations by id of the line or get all lines 
 	*   tags:
 	*     - Lines
-	*   description: Returns a list of stations or unique station
+	*   description: Returns a list of lines or unique line
 	*   operationId: stations
 	*   consumes: 
 	*     - application/json
@@ -96,14 +85,14 @@ module.exports = (server) => {
 	*   summary: Get next passages of metro/bus/train by station, line and direction
 	*   tags:
 	*     - NextPassages
-	*   description: Returns a list of stations or unique station
+	*   description: Returns a list of next passages
 	*   operationId: stations
 	*   consumes: 
 	*     - application/json
 	*   parameters:
 	*     - name: stationId
 	*       in: query
-	*       description: Identifier of the line
+	*       description: Identifier of the station
 	*       required: false
 	*       type: string
 	*     - name: lineId
@@ -113,7 +102,7 @@ module.exports = (server) => {
 	*       type: string
 	*     - name: direction
 	*       in: query
-	*       description: Identifier of the line
+	*       description: Direction (A for single way, R for return way, * for both)
 	*       required: false
 	*       type: string
 	*   responses:
@@ -125,13 +114,13 @@ module.exports = (server) => {
 	server.get('ratp/nextPassages/:stationId', handlerNextPassages);
 	server.get('ratp/nextPassages', handlerNextPassages);
 
+	/**
+	 * Manage the request of the stations informations
+	 * @param {*} req 
+	 * @param {*} res 
+	 * @param {*} next 
+	 */
 	function handlerStations(req, res, next) {
-		// if (!req.is('application/json')) {
-		//  	return next(
-		// 		new errors.InvalidContentError("Expects 'application/json'")
-		// 	);
-		// }
-
 		soapStations.getStations(req.params.lineid, req.params.name).then(
 			(result) => {
 				res.send(result);
@@ -150,15 +139,8 @@ module.exports = (server) => {
 	 * @param {*} next 
 	 */
 	function handlerLines(req, res, next) {
-		// if (!req.is('application/json')) {
-		// 	return next(
-		// 	   new errors.InvalidContentError("Expects 'application/json'")
-		//    );
-	   	// }
-
 		saopLines.getLines(req.params.lineId).then(
 			(result) => {
-				console.log(result);
 				res.send(result);
 				return next();
 			},
@@ -177,15 +159,8 @@ module.exports = (server) => {
 	 * @param {*} next 
 	 */
 	function handlerNextPassages(req, res, next) {
-		// if (!req.is('application/json')) {
-		// 	return next(
-		// 	   new errors.InvalidContentError("Expects 'application/json'")
-		//    );
-	   	// }
-
 		saopRealtime.getNextPassage(req.params.stationId,req.params.lineId,req.params.direction).then(
 			(result) => {
-				console.log(result);
 				res.send(result);
 				return next();
 			},

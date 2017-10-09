@@ -10,7 +10,7 @@ API Rest of the open data ratp
 L'application peut être utilisé via l'url :
 https://barbaria.io/ratp/
 
-L'addresse suivant permet d'accéder à la documentation swagger de l'API et tester celle-ci.  
+L'addresse suivante permet d'accéder à la documentation swagger de l'API et tester celle-ci.  
 
 # API REST RATP 
 
