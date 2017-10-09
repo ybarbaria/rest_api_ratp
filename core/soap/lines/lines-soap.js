@@ -15,11 +15,23 @@ exports.getLines = (id) => {
         clientSoap.getClientSoap().then((client) => 
         {
             var params = {
-                id : id
+                line : {
+                    id : id
+                }
             };
             
             client.getLines(params, (err, result) => {
-                resolve(result.return);
+                if(result && result.return){
+                    let lines = [];
+                    result.return.forEach(line => {
+                        lines.push({
+                            id: line.id,
+                            name: line.name
+                        });
+                    });
+                    resolve(lines);
+                }
+                resolve(result);
             });
         });
     });

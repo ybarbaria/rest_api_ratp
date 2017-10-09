@@ -25,7 +25,21 @@ exports.getStations = (id, name) => {
             };
 
             client.getStations(params, (err, result) => {
-                resolve(result.return);
+                if(result && result.return) {
+                    let stations = result.return.stations;
+                    if(stations){
+                        let stationsResult = [];
+                        stations.forEach(station => {
+                            stationsResult.push({
+                                id : station.id,
+                                name: station.name
+                            });
+                        });
+                        resolve(stationsResult);
+                    }
+                    resolve("Not found");
+                }
+               
             });
         });
     });

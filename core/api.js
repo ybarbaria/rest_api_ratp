@@ -139,7 +139,7 @@ module.exports = (server) => {
 	 * @param {*} next 
 	 */
 	function handlerLines(req, res, next) {
-		saopLines.getLines(req.params.lineId).then(
+		saopLines.getLines(req.params.lineid).then(
 			(result) => {
 				res.send(result);
 				return next();

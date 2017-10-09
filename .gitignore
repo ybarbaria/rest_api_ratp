@@ -3,3 +3,6 @@ log.txt
 node_modules
 log
 .vscode
+log.txt
+
+*.txt
