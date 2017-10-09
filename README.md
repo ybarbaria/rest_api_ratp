@@ -7,7 +7,10 @@ Ce projet est conçue via Node.js et Restify et consomme l'api SOAP de la RATP.
 
 API Rest of the open data ratp
 
-L'application peut être utilisé via l'url: https://barbaria.io/ratp/
+L'application peut être utilisé via l'url :
+https://barbaria.io/ratp/
+
+L'addresse suivant permet d'accéder à la documentation swagger de l'API et tester celle-ci.  
 
 # API REST RATP 
 
@@ -18,3 +21,6 @@ I use node.js and restify to create the api and soap-node to consume the soap of
 
 You can test it here : 
 https://barbaria.io/ratp/
+
+The following address is used to access and test the API swagger documentation :
+https://barbaria.io/ratp/doc
