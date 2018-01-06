@@ -12,7 +12,7 @@ const log = require('./log/log.js');
   */
 const server = restify.createServer({
 	name: config.name,
-	version: config.version,
+  version: config.version
 });
 
 /**
@@ -23,6 +23,9 @@ server.use(restifyPlugins.acceptParser(server.acceptable));
 server.use(restifyPlugins.queryParser({ mapParams: true }));
 server.use(restifyPlugins.fullResponse());
 
+restify.defaultResponseHeaders = function(data) {
+  this.header('Access-Control-Allow-Origin', '*');
+};
 swagger.init(server, {
   swagger: '2.0', 
   info: {
