@@ -29,7 +29,7 @@ restify.defaultResponseHeaders = function(data) {
 swagger.init(server, {
   swagger: '2.0', 
   info: {
-      version: '1.0',
+      version: '0.0.1',
       title: 'REST API RATP'
   },
   basePath: '/ratp',

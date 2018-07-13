@@ -24,3 +24,8 @@ https://barbaria.io/ratp/
 
 The following address is used to access and test the API swagger documentation :
 https://barbaria.io/ratp/doc
+
+# Environment
+
+NodeJS : 8.11.3
+NPM : 5.6.3
