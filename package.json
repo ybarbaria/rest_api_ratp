@@ -1,11 +1,11 @@
 {
   "name": "rest_api_ratp",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Rest API used to provide access to the ratp open data",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ybarbaria/rest_api_ratp.git"
+    "url": "https://github.com/bastosss77/rest_api_ratp.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,8 +13,8 @@
   "author": "YvanBarbaria",
   "license": "ISC",
   "dependencies": {
-    "bower": "^1.8.2",
-    "restify": "^5.2.0",
+    "bower": "^1.8.3",
+    "restify": "^5.2.1",
     "restify-errors": "^5.0.0",
     "restify-plugins": "^1.6.0",
     "soap": "^0.21.0",
