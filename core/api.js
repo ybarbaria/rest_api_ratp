@@ -21,6 +21,10 @@ const saopRealtime = require('./soap/realtime/nextpassages.js');
  */
 module.exports = (server) => {
 
+	server.get('/', function(req, res, next) {
+		res.send("Hello World");
+	});
+
 	/**
 	* @swagger
 	* path: /stations
